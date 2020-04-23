@@ -827,6 +827,21 @@ static const char *snet_prop_value[] = {
 	NULL
 };
 
+static void workaround_snet_properties() {
+
+	LOG(INFO) << "snet: Hiding sensitive props";
+
+
+	// Hide all sensitive props
+
+	for (int i = 0; snet_prop_key[i]; ++i) {
+
+		property_set(snet_prop_key[i], snet_prop_value[i]);
+
+	}
+
+}
+
 // If the ro.product.[brand|device|manufacturer|model|name] properties have not been explicitly
 // set, derive them from ro.product.${partition}.* properties
 static void property_initialize_ro_product_props() {
